@@ -1,4 +1,4 @@
-#python 语法
+# python 语法
 
 ## 数字
 
