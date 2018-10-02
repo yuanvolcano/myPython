@@ -153,3 +153,142 @@ He said
     
     * 如果 x 是 True ，则返回 True ，否则它将返回 y 的计算值。
     * x = Ture; y = False; x or y 将返回 Ture 。在这里短路计算同样适用。
+
+## 控制流
+
+### if语句
+
+if 语句用以检查条件：如果 条件为真（True），我们将运行一块语句（称作 if-block 或 if块），否则 我们将运行另一块语句（称作 else-block 或 else 块）。其中 else 从句是可选的。
+```
+number = 23
+guess = int(input('Enter an integer : '))
+if guess == number:
+  # 新块从这里开始
+  print('Congratulations, you guessed it.')
+  print('(but you do not win any prizes!)')
+# 新块在这里结束
+elif guess < number:
+  # 另一代码块
+  print('No, it is a little higher than that')
+  # 你可以在此做任何你希望在该代码块内进行的事情
+else:
+  print('No, it is a little lower than that')
+  # 你必须通过猜测一个大于（>）设置数的数字来到达这里。
+print('Done')
+```
+输出：
+```
+$ python if.py
+Enter an integer : 50
+No, it is a little lower than that
+Done
+$ python if.py
+Enter an integer : 22
+No, it is a little higher than that
+Done
+$ python if.py
+Enter an integer : 23
+Congratulations, you guessed it.
+(but you do not win any prizes!)
+Done
+```
+
+### while 语句
+while 语句能够让你在条件为真的前提下重复执行某块语句。 while 语句是 循环（Looping） 语句的一种。 while 语句同样可以拥有 else 子句作为可选选项。
+```
+number = 23
+running = True
+while running:
+  guess = int(input('Enter an integer : '))
+  if guess == number:
+    print('Congratulations, you guessed it.')
+    # 这将导致 while 循环中止
+    running = False
+  elif guess < number:
+    print('No, it is a little higher than that.')
+  else:
+    print('No, it is a little lower than that.')
+else:
+    print('The while loop is over.')
+# 在这里你可以做你想做的任何事
+print('Done')
+```
+输出
+```
+$ python while.py
+Enter an integer : 50
+No, it is a little lower than that.
+Enter an integer : 22
+No, it is a little higher than that.
+Enter an integer : 23
+Congratulations, you guessed it.
+The while loop is over.
+Done
+```
+
+### for语句
+
+for...in 语句是另一种循环语句，其特点是会在一系列对象上进行迭代（Iterates），意即
+它会遍历序列中的每一个项目。
+```
+for i in range(1, 5):
+  print(i)
+else:
+  print('The for loop is over')
+```
+输出
+```
+$ python for.py
+1
+2
+3
+4
+The for loop is over
+```
+
+### break语句
+
+break 语句用以中断（Break）循环语句，也就是中止循环语句的执行，即使循环条件没有变更为False，或队列中的项目尚未完全迭代依旧如此。有一点需要尤其注意，如果你的中断了一个 for 或 while 循环，任何相应循环中的else 块都将不会被执行。
+```
+while True:
+  s = input('Enter something:')
+  if s == 'quit':
+    break
+  print('Length of the string is', len(s))
+print('Done')
+```
+输出：
+```
+python break.py
+Enter something : Programming is fun
+Length of the string is 18
+Enter something : quit
+Done
+```
+### continue 语句
+
+continue 语句用以告诉 Python 跳过当前循环块中的剩余语句，并继续该循环的下一次迭代。
+```
+while True:
+  s = input('enter something:')
+  if s == 'quit':
+    break
+  if len(s) < 3:
+    print('Too small')
+    continue
+  print('input is of sufficient length')
+```
+
+输出：
+```
+$ python continue.py
+Enter something : a
+Too small
+Enter something : 12
+Too small
+Enter something : abc
+Input is of sufficient length
+Enter something : quit
+```
+
+## 函数
