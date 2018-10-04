@@ -292,3 +292,182 @@ Enter something : quit
 ```
 
 ## 函数
+
+函数（Functions）是指可重复使用的程序片段。它们允许你为某个代码块赋予名字，允许你通过这一特殊的名字在你的程序任何地方来运行代码块，并可重复任何次数。这就是所谓的调用（Calling）函数。
+
+函数可以通过关键字 def 来定义。这一关键字后跟一个函数的标识符名称，再跟一对圆括号，其中可以包括一些变量的名称，再以冒号结尾，结束这一行。随后而来的语句块是函数的一部分。
+
+```
+def say_hello():
+  print('hello world')
+
+say_hello()
+```
+输出：
+```
+python function1.py
+hello world
+```
+
+### 函数参数
+函数可以获取参数，这个参数的值由你所提供，借此，函数便可以利用这些值来做一些事情。这些参数与变量类似，这些变量的值在我们调用函数时已被定义，且在函数运行时均已赋值完成。
+
+函数中的参数通过将其放置在用以定义函数的一对圆括号中指定，并通过逗号予以分隔。当我们调用函数时，我们以同样的形式提供需要的值。要注意在此使用的术语——在定义函数时给定的名称称作“形参”（Parameters），在调用函数时你所提供给函数的值称作“实参”（Arguments）。
+
+```
+def print_max(a, b):
+  if a > b:
+    print(a, 'is maximum')
+  elif a == b:
+    print(a, 'is equal to', b)
+  else:
+    print(b, 'is maximum')
+
+print_max(5, 6)
+```
+### 局部变量
+
+当你在一个函数的定义中声明变量时，它们不会以任何方式与身处函数之外但具有相同名称的变量产生关系，也就是说，这些变量名只存在于函数这一局部（Local）。这被称为变量的作用域（Scope）。
+
+```
+x = 50
+
+def func(x):
+  print('x is', x)
+  x = 2
+  print('change local x to', x)
+
+func(x)
+
+print('x is still', x)
+```
+
+输出
+```
+python function_local.py
+x is 50
+Changed local x to 2
+x is still 50
+```
+
+### global语句
+
+如果你想给一个在程序顶层的变量赋值（也就是说它不存在于任何作用域中，无论是函数还是类），那么你必须告诉 Python 这一变量并非局部的，而是全局（Global）的。我们需要通过 global 语句来完成这件事。
+
+```
+x = 50
+
+def func():
+  global x
+  print('x is', x)
+  x = 2
+  print('x is', x)
+
+func()
+```
+输出
+```
+python function_global.py
+x is 50
+Changed global x to 2
+```
+
+### 默认参数值
+
+对于一些函数来说，你可能为希望使一些参数可选并使用默认的值，以避免用户不想为他们提供值的情况。在函数定义时附加一个赋值运算符（ = ）来为参数指定默认参数值。
+
+```
+def say(message, times=1):
+  print(message * times)
+  
+say('Hello')
+say('World', 5)
+```
+
+### 关键字参数
+
+如果你有一些具有许多参数的函数，而你又希望只对其中的一些进行指定，那么你可以通过命名它们来给这些参数赋值——这就是关键字参数（Keyword Arguments）——我们使用命名（关键字）而非位置（一直以来我们所使用的方式）来指定函数中的参数。
+
+```
+def func(a, b = 2, c = 3):
+  print('a is', a, 'b is', b, 'c is', c)
+
+func(3, 7)
+
+func(23, b = 4, c = 5)
+```
+
+### 可变参数
+
+有时你可能想定义的函数里面能够有任意数量的变量，也就是参数数量是可变的，这可以通过使用星号来实现。
+
+```
+def total(a = 5, *numbers, **phonebook):
+  print('a', a)
+
+  for single_item in numbers:
+    print('single_item', single_item)
+
+  for first_part, second_part in phonebook.items():
+    print(first_part, second_part)
+  
+total(10, 1, 2, 3, Jack=1123, John=2231, Inge=1560)
+```
+
+### return语句
+
+return 语句用于从函数中返回，也就是中断函数。我们也可以选择在中断函数时从函数中返回一个值。
+
+```
+def maximum (x, y):
+  if x > y:
+    return x
+  elif x == y:
+    return 'The numbers are equal'
+  else:
+    return y
+
+print(maximum(5, 6))
+```
+
+如果 return 语句没有搭配任何一个值则代表着 返回 None 。 None 在 Python 中一个特殊的类型，代表着虚无。举个例子， 它用于指示一个变量没有值，如果有值则它的值便是 None（虚无） 。每一个函数都在其末尾隐含了一句 return None ，除非你写了你自己的 return 语句。
+
+```
+def some_function():
+  pass
+
+print(some_function())
+```
+
+Python 中的 pass 语句用于指示一个没有内容的语句块。
+
+### DocStrings
+
+函数的第一行逻辑行中的字符串是该函数的 文档字符串（DocString）。这里要注意文档字符串也适用于后面相关章节将提到的模块（Modules）与类（Class） 。
+
+该文档字符串所约定的是一串多行字符串，其中第一行以某一大写字母开始，以句号结束。第二行为空行，后跟的第三行开始是任何详细的解释说明。
+
+```
+def print_max(x, y):
+    '''Prints the maximum of two numbers. 
+
+    The two values must be integers.'''
+
+    # 如果可能，将其转换至整数类型
+    x = int(x)
+    y = int(y)
+    if x > y:
+      print(x, 'is maximum')
+    else:
+      print(y, 'is maximum')
+
+print_max(3, 5)
+print(print_max.__doc__)
+```
+输出：
+```
+5 is maximum
+Prints the maximum of two numbers.
+The two values must be integers.
+```
+
