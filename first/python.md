@@ -178,15 +178,14 @@ print('Done')
 ```
 输出：
 ```
-$ python if.py
 Enter an integer : 50
 No, it is a little lower than that
 Done
-$ python if.py
+
 Enter an integer : 22
 No, it is a little higher than that
 Done
-$ python if.py
+
 Enter an integer : 23
 Congratulations, you guessed it.
 (but you do not win any prizes!)
@@ -215,11 +214,12 @@ print('Done')
 ```
 输出
 ```
-$ python while.py
 Enter an integer : 50
 No, it is a little lower than that.
+
 Enter an integer : 22
 No, it is a little higher than that.
+
 Enter an integer : 23
 Congratulations, you guessed it.
 The while loop is over.
@@ -238,7 +238,6 @@ else:
 ```
 输出
 ```
-$ python for.py
 1
 2
 3
@@ -259,9 +258,9 @@ print('Done')
 ```
 输出：
 ```
-python break.py
 Enter something : Programming is fun
 Length of the string is 18
+
 Enter something : quit
 Done
 ```
@@ -281,11 +280,12 @@ while True:
 
 输出：
 ```
-$ python continue.py
 Enter something : a
 Too small
+
 Enter something : 12
 Too small
+
 Enter something : abc
 Input is of sufficient length
 Enter something : quit
@@ -305,7 +305,6 @@ say_hello()
 ```
 输出：
 ```
-python function1.py
 hello world
 ```
 
@@ -344,7 +343,6 @@ print('x is still', x)
 
 输出
 ```
-python function_local.py
 x is 50
 Changed local x to 2
 x is still 50
@@ -367,7 +365,6 @@ func()
 ```
 输出
 ```
-python function_global.py
 x is 50
 Changed global x to 2
 ```
