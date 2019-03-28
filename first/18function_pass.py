@@ -1,4 +1,4 @@
 def some_function():
-  pass
+  x = 5
 
 print(some_function())
